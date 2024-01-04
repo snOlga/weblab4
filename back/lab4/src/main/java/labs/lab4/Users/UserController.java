@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import labs.lab4.MainController;
 import labs.lab4.DataBase.DataBaseModule;
 
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,11 @@ public class UserController {
 
     public static void setUsers() {
         UserController.users = (ArrayList<User>) DataBaseModule.getUsersFromDBList();
+        System.out.println("---set users from db---");
+        for (int i = 0; i < users.size(); i++) {
+            System.out.println(users.get(i));
+        }
+        System.out.println("--- ---");
     }
 
     @PostMapping("/api/user_processing")
@@ -41,21 +47,20 @@ public class UserController {
         String password = json.get("password");
         boolean isNew = Boolean.parseBoolean(json.get("isNew"));
 
-        // TODO: here's a stub
-        String IDkey = "stub";
+        User user = new User(login, password);
+
+        String IDkey = user.getPassword();
 
         Cookie cookie = new Cookie("IDkey", IDkey);
         cookie.setMaxAge(Integer.MAX_VALUE);
         cookie.setPath("/");
-
-        User user = new User(login, password);
 
         if (isNew) {
             users.add(user);
 
             usersHere.put(IDkey, user);
             response.addCookie(cookie);
-            DataBaseModule.writeToDB(user);
+            DataBaseModule.writeUserToDB(user);
         } else {
             for (int i = 0; i < users.size(); i++) {
                 if (user.equals(users.get(i))) {

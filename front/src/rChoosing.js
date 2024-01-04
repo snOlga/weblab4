@@ -6,16 +6,15 @@ function rChoosing() {
 
     const handleClick = () => {
         // You can add your custom logic here when the button is clicked
-        alert('Button clicked!');
-      };
+        console.log('Button clicked!');
+    };
 
     return (
         <div>
-            <IconButton color="primary" onClick={handleClick}>
+            <IconButton color="primary" onClick={() => onclick(1)}>
                 <GpsFixedOutlinedIcon />
             </IconButton>
         </div>
     );
 }
-
 export default rChoosing;

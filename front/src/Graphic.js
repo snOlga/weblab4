@@ -11,9 +11,9 @@ function Graphic() {
         <div>
                 <svg id="graphic" height="300" width="300" xmlns="http://www.w3.org/2000/svg">
                     
-                    <polygon id="triangle" className="figure" points="150,50 150,150 200,150"></polygon>
-                    <polygon id="square" className="figure" points="150,250 150,150 250,150 250,250"></polygon>
-                    <path id="round" className="figure" d="M 50 150 C 50 250, 150 250, 150 250 L 150 150 Z"></path>
+                    <polygon id="triangle" className="figure" points="150,250 150,150 100,150"></polygon>
+                    <polygon id="square" className="figure" points="150,50 150,150 250,150 250,50"></polygon>
+                    <path id="round" className="figure" d="M 50 150 C 50 50, 150 50, 150 50 L 150 150 Z"></path>
 
                     <line stroke="#272829" x1="0" x2="300" y1="150" y2="150"></line>
                     <line stroke="#272829" x1="150" x2="150" y1="0" y2="300"></line>

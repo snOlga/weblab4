@@ -6,23 +6,24 @@ import Graphic from './Graphic';
 
 function Main() {
 
-    let isUserHere = false;
-
+    var isUserHere = 
     fetch('http://localhost:8080/api/check', {
         method: 'GET',
         credentials: 'include',
     })
-        .then(response => {
-            console.log(response);
-            response.json();
-        })
+        .then(response => response.json())
+        .then((data) => { console.log(data.isUserHere)
+            return data.isUserHere });
 
     const handleClick = () => {
         // You can add your custom logic here when the button is clicked
         alert('Button clicked!');
     };
 
-    if (true) {
+    console.log("isUserHere: " + isUserHere);
+    console.log("x: " + xValue + " y: " + yValue + " r: " + rValue);
+
+    if (isUserHere) {
         return (
             <div>
                 <Graphic />
@@ -35,3 +36,4 @@ function Main() {
 }
 
 export default Main;
+

@@ -2,8 +2,10 @@ package labs.lab4.Users;
 
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+import java.util.*;
 
 import jakarta.persistence.*;
+import labs.lab4.Responses.Response;
 
 import java.security.MessageDigest;
 
@@ -14,13 +16,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    long id;
+    private long id;
 
     @Column(name = "login")
-    String login;
+    private String login;
 
     @Column(name = "password")
-    String password;
+    private String password;
 
     User(String login, String password) {
         this.login = login;
@@ -50,8 +52,8 @@ public class User {
     public boolean equals(Object obj) {
         User otherUser = (User) obj;
         // TODO:
-        // return this.id == otherUser.id;
-        return (this.login).equals(otherUser.login);
+        return this.id == otherUser.id;
+        //return (this.login).equals(otherUser.login);
     }
 
     private String get_SHA_512_SecurePassword(String passwordToHash, String salt) {

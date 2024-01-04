@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseModule {
-    public static void writeToDB(User item) {
+    public static void writeUserToDB(User item) {
         // HibernateUtil hibernateUtil = new HibernateUtil();
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -40,7 +40,7 @@ public class DataBaseModule {
         HibernateUtil hibernateUtil = new HibernateUtil();
         SessionFactory sessionFactory = hibernateUtil.getSessionFactory();
         try (Session session = sessionFactory.openSession()) {
-            Query<User> query = session.createQuery("FROM users", User.class);
+            Query<User> query = session.createQuery("FROM User", User.class);
             entityList = query.list();
         } catch (Exception e) {
             e.printStackTrace();
