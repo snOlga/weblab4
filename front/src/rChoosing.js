@@ -1,20 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import GpsFixedOutlinedIcon from '@mui/icons-material/GpsFixedOutlined';
 
-function rChoosing() {
+function RChoosing({ setToMain }) {
 
-    const handleClick = () => {
-        // You can add your custom logic here when the button is clicked
-        console.log('Button clicked!');
-    };
+    function handleChangeValue(value) {
+        setToMain(value);
+    }
 
     return (
         <div>
-            <IconButton color="primary" onClick={() => onclick(1)}>
+            1
+            <IconButton color="primary" onClick={() => handleChangeValue(1)}>
+                <GpsFixedOutlinedIcon />
+            </IconButton>
+            2
+            <IconButton color="primary" onClick={() => handleChangeValue(2)}>
+                <GpsFixedOutlinedIcon />
+            </IconButton>
+            3
+            <IconButton color="primary" onClick={() => handleChangeValue(3)}>
+                <GpsFixedOutlinedIcon />
+            </IconButton>
+            4
+            <IconButton color="primary" onClick={() => handleChangeValue(4)}>
+                <GpsFixedOutlinedIcon />
+            </IconButton>
+            5
+            <IconButton color="primary" onClick={() => handleChangeValue(5)}>
                 <GpsFixedOutlinedIcon />
             </IconButton>
         </div>
     );
 }
-export default rChoosing;
+
+export default RChoosing;

@@ -23,12 +23,6 @@ public class MainController {
     @GetMapping("/api/check")
     public Map<String, String> checkConnection(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
-        
-        System.out.println("--- cookies in checkConnection ---");
-        for (Cookie cookie : cookies) {
-            System.out.println(cookie);
-        }
-        System.out.println("--- ---");
 
         if (cookies != null) {
             for (Cookie cookie : cookies) {

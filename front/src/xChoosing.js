@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function xChoosing() {
+function XChoosing({ setToMain }) {
+    const [xValue, setValue] = useState('');
 
-    const handleClick = () => {
-        // You can add your custom logic here when the button is clicked
-        alert('Button clicked!');
-      };
+    const handleChangeValue = (e) => {
+        setValue(e.target.value);
+        setToMain(xValue);
+    };
 
     return (
-        <div>
-            hello there
-            <input type='text' />
-        </div>
+        <input type='text' onChange={handleChangeValue} />
     );
 }
 
-export default xChoosing;
+export default XChoosing;
