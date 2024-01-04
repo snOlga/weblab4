@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Graphic(radius) {
+function Graphic({radius, setToMainX, setToMainY}) {
 
     // const handleClick = () => {
     //     // You can add your custom logic here when the button is clicked
@@ -11,8 +11,10 @@ function Graphic(radius) {
         let x = (event.clientX - 150)/100 * 5;
         let y = -(event.clientY - 150)/100 * 5;
 
-        console.log(radius.radius);
+        console.log(radius);
         console.log("graphic: x: " + x + " y: " + y);
+        setToMainX(x);
+        setToMainY(y);
     }
 
     let trianglePoints = "150," + 250 + " 150,150 100,150";

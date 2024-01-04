@@ -62,7 +62,7 @@ function Main() {
         return (
             <div>
                 <div>
-                    <Graphic radius={rValue}/>
+                    <Graphic radius={rValue} setToMainX={setX} setToMainY={setY}/>
                     <br />
                     x:
                     <br />
