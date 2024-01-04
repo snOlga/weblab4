@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Graphic({radius, setToMainX, setToMainY}) {
+function Graphic({ radius, setToMainX, setToMainY }) {
 
     // const handleClick = () => {
     //     // You can add your custom logic here when the button is clicked
@@ -8,8 +8,8 @@ function Graphic({radius, setToMainX, setToMainY}) {
     // };
 
     const getCoordinates = (event) => {
-        let x = (event.clientX - 150)/100 * 5;
-        let y = -(event.clientY - 150)/100 * 5;
+        let x = (event.clientX - 150) / 100 * 5;
+        let y = -(event.clientY - 150) / 100 * 5;
 
         console.log(radius);
         console.log("graphic: x: " + x + " y: " + y);
@@ -17,15 +17,22 @@ function Graphic({radius, setToMainX, setToMainY}) {
         setToMainY(y);
     }
 
-    let trianglePoints = "150," + 250 + " 150,150 100,150";
+    let trianglePoints = "150," + (20 * radius + 150) + " 150,150 " + (-10 * radius + 150) + ",150";
+    let squarePoints = "150," + (-20 * radius + 150) +
+        " 150,150 " + (20 * radius + 150) + ",150 " + (20 * radius + 150) + "," +
+        (-20 * radius + 150);
+    let roundPoints = "M " + (-20 * radius + 150) + " 150 C " +
+        (-20 * radius + 150) + " " + (-20 * radius + 150) + 
+        ", 150 " + (-20 * radius + 150) + ", 150 " + (-20 * radius + 150) + 
+        " L 150 150 Z";
 
     return (
         <div>
             <svg id="graphic" height="300" width="300" xmlns="http://www.w3.org/2000/svg" onClick={getCoordinates}>
 
                 <polygon id="triangle" className="figure" points={trianglePoints}></polygon>
-                <polygon id="square" className="figure" points="150,50 150,150 250,150 250,50"></polygon>
-                <path id="round" className="figure" d="M 50 150 C 50 50, 150 50, 150 50 L 150 150 Z"></path>
+                <polygon id="square" className="figure" points={squarePoints}></polygon>
+                <path id="round" className="figure" d={roundPoints}></path>
 
                 <line stroke="#272829" x1="0" x2="300" y1="150" y2="150"></line>
                 <line stroke="#272829" x1="150" x2="150" y1="0" y2="300"></line>
