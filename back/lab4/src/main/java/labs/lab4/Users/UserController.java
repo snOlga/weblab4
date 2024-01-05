@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/api/user_processing")
-    public ResponseEntity<?> postMethodName(@RequestBody Map<String, String> json, HttpServletResponse response) {
+    public ResponseEntity<?> userProcessing (@RequestBody Map<String, String> json, HttpServletResponse response) {
         String login = json.get("login");
         String password = json.get("password");
         boolean isNew = Boolean.parseBoolean(json.get("isNew"));
@@ -56,10 +56,11 @@ public class UserController {
 
             usersHere.put(IDkey, user);
             response.addCookie(cookie);
-            DataBaseModule.writeUserToDB(user);
+            DataBaseModule.writeToDB(user);
         } else {
             for (int i = 0; i < users.size(); i++) {
                 if (user.equals(users.get(i))) {
+                    user = users.get(i);
                     usersHere.put(IDkey, user);
                     response.addCookie(cookie);
                     break;

@@ -21,8 +21,8 @@ public class Response {
     private boolean value;
 
     @ManyToOne
-    @JoinColumn
-    User owner;
+    @JoinColumn(name = "owner", referencedColumnName="id")
+    private User owner;
 
     public float getX() {
         return x;
@@ -38,6 +38,10 @@ public class Response {
 
     public int getID() {
         return id;
+    }
+
+    public User getOwner() {
+        return owner;
     }
 
     public boolean isValue() {
@@ -62,6 +66,10 @@ public class Response {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public Response() {

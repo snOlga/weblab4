@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpServletRequest;
+import labs.lab4.DataBase.DataBaseModule;
 import labs.lab4.Responses.Response;
 import labs.lab4.Users.UserController;
 import jakarta.servlet.http.Cookie;
@@ -19,10 +20,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class MainController {
     private boolean isUserHere = false;
+    private Cookie[] cookies;
 
     @GetMapping("/api/check")
     public Map<String, String> checkConnection(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
+        this.cookies = request.getCookies();
 
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -41,7 +43,8 @@ public class MainController {
     }
 
     @PostMapping("/api/get_response")
-    public Map<String, String> getResponse(@RequestBody Map<String, String> json, HttpServletRequest request) {
+    public Map<String, String> getResponse(HttpServletRequest request, @RequestBody Map<String, String> json) {
+        this.cookies = request.getCookies();
         checkConnection(request);
         Map<String, String> responseLine = new HashMap<>();
 
@@ -56,6 +59,22 @@ public class MainController {
             responseLine.put("isValid", "false");
             return responseLine;
         }
+
+        if (this.cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("IDkey")
+                        && UserController.getUsersHere().get(cookie.getValue()) != null) {
+                    response.setOwner(UserController.getUsersHere().get(cookie.getValue()));
+                }
+            }
+        }
+
+        if (response.getOwner() == null) {
+            responseLine.put("isValid", "false");
+            return responseLine;
+        }
+
+        DataBaseModule.writeToDB(response);
 
         responseLine.put("isValid", "true");
 

@@ -49,9 +49,7 @@ public class User {
     @Override
     public boolean equals(Object obj) {
         User otherUser = (User) obj;
-        // TODO:
-        return this.id == otherUser.id;
-        //return (this.login).equals(otherUser.login);
+        return this.login.equals(otherUser.login) && this.password.equals(otherUser.password);
     }
 
     private String get_SHA_512_SecurePassword(String passwordToHash, String salt) {

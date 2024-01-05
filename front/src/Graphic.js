@@ -2,11 +2,6 @@ import React from 'react';
 
 function Graphic({ radius, setToMainX, setToMainY }) {
 
-    // const handleClick = () => {
-    //     // You can add your custom logic here when the button is clicked
-    //     alert('Button clicked!');
-    // };
-
     const getCoordinates = (event) => {
         let x = (event.clientX - 150) / 100 * 5;
         let y = -(event.clientY - 150) / 100 * 5;

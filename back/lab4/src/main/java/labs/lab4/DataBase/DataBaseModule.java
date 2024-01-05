@@ -4,23 +4,21 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
+import labs.lab4.Responses.Response;
 import labs.lab4.Users.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseModule {
-    public static void writeUserToDB(User item) {
-        // HibernateUtil hibernateUtil = new HibernateUtil();
+    public static void writeToDB(Object item) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
 
         try {
             session.beginTransaction();
 
-            User entity = item;
-
-            session.save(entity);
+            session.save(item);
 
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -31,8 +29,6 @@ public class DataBaseModule {
         } finally {
             session.close();
         }
-
-        // sessionFactory.close();
     }
 
     public static List<User> getUsersFromDBList() {
@@ -47,4 +43,6 @@ public class DataBaseModule {
         }
         return entityList;
     }
+
+
 }
