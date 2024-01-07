@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import labs.lab4.DataBase.DataBaseModule;
+import labs.lab4.DBrepository.DataBaseModule;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,7 @@ public class UserController {
     private static ArrayList<User> users = new ArrayList<User>();
 
     public static void setUsers() {
-        UserController.users = (ArrayList<User>) DataBaseModule.getUsersFromDBList();
+        UserController.users = (ArrayList<User>) DataBaseModule.getUsers();
         System.out.println("---set users from db---");
         for (int i = 0; i < users.size(); i++) {
             System.out.println(users.get(i));

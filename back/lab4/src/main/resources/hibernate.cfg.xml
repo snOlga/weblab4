@@ -18,7 +18,7 @@
         <property name="format_sql">true</property>
 
         <mapping class="labs.lab4.Users.User"/>
-        <mapping class="labs.lab4.Responses.Response"/>
+        <mapping class="labs.lab4.Hits.HitResult"/>
 
     </session-factory>
 </hibernate-configuration>

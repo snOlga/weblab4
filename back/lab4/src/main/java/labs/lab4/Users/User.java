@@ -22,12 +22,12 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    User(String login, String password) {
+    public User(String login, String password) {
         this.login = login;
         this.password = get_SHA_512_SecurePassword(password, login);
     }
 
-    User() {
+    public User() {
     }
 
     public void setLogin(String login) {
@@ -44,6 +44,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public long getId() {
+        return id;
     }
 
     @Override

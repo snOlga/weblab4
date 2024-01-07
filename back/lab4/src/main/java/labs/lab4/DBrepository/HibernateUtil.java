@@ -1,4 +1,4 @@
-package labs.lab4.DataBase;
+package labs.lab4.DBrepository;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;

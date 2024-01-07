@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import XChoosing from './xChoosing';
 import YChoosing from './yChoosing';
 import RChoosing from './rChoosing';
 import Graphic from './Graphic';
+import Table from './Table';
 
 function Main() {
 
     var isUserHere =
-        fetch('http://localhost:8080/api/check', {
+        fetch('http://localhost:8080/api/check_user', {
             method: 'GET',
             credentials: 'include',
         })
@@ -20,7 +21,7 @@ function Main() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        fetch('http://localhost:8080/api/get_response', {
+        fetch('http://localhost:8080/api/get_one_hit', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -33,13 +34,26 @@ function Main() {
             }),
         })
             .then(response => {
+                console.log("only one response: ");
                 console.log(response.json());
             })
-            .then(data => { console.log(data); })
+
+        fetch("http://localhost:8080/api/get_all_hits", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                let jsonResp = response.json();
+                console.log(jsonResp);
+                jsonResp.then((data) => setTable(data));                
+            })
 
     };
 
-    console.log("isUserHere: " + isUserHere);
+    //console.log("isUserHere: " + isUserHere);
 
     let xValue = 0;
     let yValue = 0;
@@ -58,11 +72,13 @@ function Main() {
         setRValue(rdata);
     }
 
+    const [tableValue, setTable] = useState([]);
+
     if (isUserHere) {
         return (
             <div>
                 <div>
-                    <Graphic radius={rValue} setToMainX={setX} setToMainY={setY}/>
+                    <Graphic radius={rValue} setToMainX={setX} setToMainY={setY} />
                     <br />
                     x:
                     <br />
@@ -77,6 +93,9 @@ function Main() {
                 </div>
                 <div>
                     <input type="submit" onClick={handleSubmit} />
+                </div>
+                <div>
+                    <Table JsonData={tableValue} />
                 </div>
             </div>
         );

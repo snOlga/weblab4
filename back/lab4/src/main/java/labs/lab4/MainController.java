@@ -1,14 +1,18 @@
 package labs.lab4;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpServletRequest;
-import labs.lab4.DataBase.DataBaseModule;
-import labs.lab4.Responses.Response;
+import labs.lab4.DBrepository.DataBaseModule;
+import labs.lab4.Hits.HitResult;
+import labs.lab4.Users.User;
 import labs.lab4.Users.UserController;
 import jakarta.servlet.http.Cookie;
 
@@ -22,7 +26,7 @@ public class MainController {
     private boolean isUserHere = false;
     private Cookie[] cookies;
 
-    @GetMapping("/api/check")
+    @GetMapping("/api/check_user")
     public Map<String, String> checkConnection(HttpServletRequest request) {
         this.cookies = request.getCookies();
 
@@ -42,8 +46,8 @@ public class MainController {
         return response;
     }
 
-    @PostMapping("/api/get_response")
-    public Map<String, String> getResponse(HttpServletRequest request, @RequestBody Map<String, String> json) {
+    @PostMapping("/api/get_one_hit")
+    public Map<String, String> getHit(HttpServletRequest request, @RequestBody Map<String, String> json) {
         this.cookies = request.getCookies();
         checkConnection(request);
         Map<String, String> responseLine = new HashMap<>();
@@ -52,10 +56,11 @@ public class MainController {
             responseLine.put("isUserHere", "false");
             return responseLine;
         }
+        responseLine.put("isUserHere", "true");
 
-        Response response = Response.validateResponse(json.get("x"), json.get("y"), json.get("r"));
+        HitResult hit = HitResult.validateHit(json.get("x"), json.get("y"), json.get("r"));
 
-        if (response == null) {
+        if (hit == null) {
             responseLine.put("isValid", "false");
             return responseLine;
         }
@@ -64,26 +69,61 @@ public class MainController {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("IDkey")
                         && UserController.getUsersHere().get(cookie.getValue()) != null) {
-                    response.setOwner(UserController.getUsersHere().get(cookie.getValue()));
+                    hit.setOwner(UserController.getUsersHere().get(cookie.getValue()));
                 }
             }
         }
 
-        if (response.getOwner() == null) {
+        if (hit.getOwner() == null) {
             responseLine.put("isValid", "false");
             return responseLine;
         }
+        //TODO: redo
+        //ResponseList responseList = new ResponseList();
+        //responseList.add(response);
 
-        DataBaseModule.writeToDB(response);
+        hit.calculate();
+        DataBaseModule.writeToDB(hit);
 
         responseLine.put("isValid", "true");
-
-        response.calculate();
-        responseLine.put("x", response.getX() + "");
-        responseLine.put("y", response.getY() + "");
-        responseLine.put("r", response.getR() + "");
-        responseLine.put("resp", response.isValue() + "");
+        responseLine.put("x", hit.getX() + "");
+        responseLine.put("y", hit.getY() + "");
+        responseLine.put("r", hit.getR() + "");
+        responseLine.put("value", hit.isValue() + "");
 
         return responseLine;
     }
+
+    @PostMapping("/api/get_all_hits")
+    public List<HitResult> getHits(HttpServletRequest request) {
+        checkConnection(request);
+
+        ArrayList<HitResult> responseList = new ArrayList<>();
+
+        if (!this.isUserHere) {
+            return responseList;
+        }
+
+        User currentUser = new User();
+
+        if (this.cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("IDkey")
+                        && UserController.getUsersHere().get(cookie.getValue()) != null) {
+                    currentUser = UserController.getUsersHere().get(cookie.getValue());
+                }
+            }
+        }
+
+        ArrayList<HitResult> bufHits = (ArrayList<HitResult>) DataBaseModule.getHits(currentUser);
+
+        for (HitResult hit : bufHits) {
+            if (currentUser.equals(hit.getOwner())) {
+                responseList.add(hit);
+            }
+        }
+
+        return responseList;
+    }
+
 }

@@ -1,10 +1,10 @@
-package labs.lab4.DataBase;
+package labs.lab4.DBrepository;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
-import labs.lab4.Responses.Response;
+import labs.lab4.Hits.HitResult;
 import labs.lab4.Users.User;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class DataBaseModule {
         }
     }
 
-    public static List<User> getUsersFromDBList() {
+    public static List<User> getUsers() {
         List<User> entityList = new ArrayList<User>();
         HibernateUtil hibernateUtil = new HibernateUtil();
         SessionFactory sessionFactory = hibernateUtil.getSessionFactory();
@@ -44,5 +44,17 @@ public class DataBaseModule {
         return entityList;
     }
 
-
+    public static List<HitResult> getHits(User user) {
+        String userID = user.getId() + "";
+        List<HitResult> entityList = new ArrayList<HitResult>();
+        HibernateUtil hibernateUtil = new HibernateUtil();
+        SessionFactory sessionFactory = hibernateUtil.getSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            Query<HitResult> query = session.createQuery("FROM HitResult where owner = " + userID, HitResult.class);
+            entityList = query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return entityList;
+    }
 }

@@ -1,11 +1,14 @@
-package labs.lab4.Responses;
+package labs.lab4.Hits;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import labs.lab4.Users.User;
 
 @Entity
-@Table(name = "response")
-public class Response {
+@Table(name = "Hits")
+public class HitResult {
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -17,9 +20,10 @@ public class Response {
     private float y;
     @Column(name = "r")
     private float r;
-    @Column(name = "resp")
+    @Column(name = "hit_result")
     private boolean value;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "owner", referencedColumnName="id")
     private User owner;
@@ -72,19 +76,19 @@ public class Response {
         this.owner = owner;
     }
 
-    public Response() {
+    public HitResult() {
 
     }
 
-    public Response(float xValue, float yValue, float rValue) {
+    public HitResult(float xValue, float yValue, float rValue) {
         this.x = xValue;
         this.y = yValue;
         this.r = rValue;
     }
 
-    public static Response validateResponse(String xString, String yString, String rString) {
+    public static HitResult validateHit(String xString, String yString, String rString) {
         try {
-            return new Response(Float.parseFloat(xString), Float.parseFloat(yString), Float.parseFloat(rString));
+            return new HitResult(Float.parseFloat(xString), Float.parseFloat(yString), Float.parseFloat(rString));
         } catch (Exception e) {
             return null;
         }
@@ -92,7 +96,7 @@ public class Response {
 
     public boolean calculate() {
         if (x == 0 && y == 0) {
-            value = true;
+            this.value = true;
         }
 
         boolean firstQuarter = x > 0 && y > 0 && (x <= r && y <= r);
@@ -100,9 +104,9 @@ public class Response {
         boolean thirdQuarter = x < 0 && y < 0 && (x >= (0 - r / 2) && y >= (0 - r));
 
         if (firstQuarter || secondQuarter || thirdQuarter) {
-            value = true;
+            this.value = true;
         } else {
-            value = false;
+            this.value = false;
         }
         return value;
     }
@@ -113,6 +117,6 @@ public class Response {
 
     @Override
     public boolean equals(Object obj) {
-        return this.id == ((Response) obj).getID();
+        return this.id == ((HitResult) obj).getID();
     }
 }
