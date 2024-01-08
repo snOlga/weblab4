@@ -55,8 +55,6 @@ function Graphic({ radius, setToMainX, setToMainY, JsonData }) {
                 <line stroke="#272829" x1="145" x2="155" y1="200" y2="200"></line>
                 <line stroke="#272829" x1="145" x2="155" y1="250" y2="250"></line>
 
-                <circle cx='50' cy='50' r='3' />
-
                 {DrawPoints}
             </svg>
         </div>

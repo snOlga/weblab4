@@ -1,9 +1,9 @@
 .header {
     margin: 2%;
-    margin-left: 10%;
+    margin-left: 20%;
     margin-right: 10%;
 
-
+    display: inline-block;
 
     font-size: 50px;
     color: #6e79d6;
@@ -96,4 +96,14 @@
 .mainTable tbody {
     font-weight: 300;
     color: white;
+}
+
+
+.userLabel {
+    border: 1px solid #6e79d6;
+
+    margin: 1%;
+    padding: 3%;
+
+    border-radius: 30px;
 }

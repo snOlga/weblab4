@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import XChoosing from './xChoosing';
 import YChoosing from './yChoosing';
 import RChoosing from './rChoosing';
 import Graphic from './Graphic';
 import Table from './Table';
+import UserLabel from './UserLabel.js';
 import './Main.css';
 
 function Main() {
@@ -79,6 +81,7 @@ function Main() {
             <div className='header'>
                 Safonova Olga P3207
                 <div className='container'>
+                    <UserLabel />
                     <div>
                         <Graphic radius={rValue} setToMainX={setX} setToMainY={setY} JsonData={tableValue} />
                     </div>
@@ -103,6 +106,8 @@ function Main() {
                 </div>
             </div>
         );
+    } else {
+        return <Navigate to='/' />
     }
 }
 
