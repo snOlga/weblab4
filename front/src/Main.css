@@ -1,0 +1,99 @@
+.header {
+    margin: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+
+
+
+    font-size: 50px;
+    color: #6e79d6;
+    font-weight: 300;
+
+    text-align: right;
+}
+
+
+.container {
+    margin-top: 1%;
+    padding: 3%;
+
+    border-radius: 30px;
+    font-size: xx-large;
+    background-color: rgb(73, 75, 76);
+    box-shadow: 3px 5px 5px black;
+    text-align: left;
+    display: flex;
+}
+
+.buttons {
+    padding: 3%;
+    font-weight: 500;
+}
+
+.input {
+    border-radius: 20px;
+    height: 30px;
+    width: 300px;
+    border: none;
+    border-bottom: 2px solid black;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.chooseButtons {
+    font-weight: 200;
+    color: white;
+    font-size: x-large;
+}
+
+.chooseButton {
+    display: inline-block;
+    border-right: 1px solid rgb(141, 141, 141);
+    margin-right: 3%;
+}
+
+.chooseButtonRight {
+    display: flex;
+    margin-right: 3%;
+}
+
+.button {
+    font-weight: 300;
+    border-radius: 20px;
+    height: 50px;
+    width: 100px;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: large;
+    background-color: #6e79d6;
+}
+
+.button:hover {
+    transition: all 500ms ease-out;
+    background-color: #5057a9;
+}
+
+
+
+
+.mainTable {
+    margin: 2%;
+    
+}
+
+.mainTable,
+.mainTable th,
+.mainTable td{
+    padding: 10px;
+    min-height: 500px;
+    border: 2px solid white;
+    border-collapse: collapse;
+    width: 600px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.mainTable tbody {
+    font-weight: 300;
+    color: white;
+}

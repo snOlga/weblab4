@@ -1,4 +1,5 @@
 import React from 'react';
+import './Main.css';
 
 function Table({JsonData}) {
 
@@ -18,7 +19,7 @@ function Table({JsonData}) {
     )
 
     return (
-        <table>
+        <table className='mainTable'>
             <thead>
                 <tr>
                     <th>x</th>

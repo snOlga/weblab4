@@ -4,6 +4,7 @@ import YChoosing from './yChoosing';
 import RChoosing from './rChoosing';
 import Graphic from './Graphic';
 import Table from './Table';
+import './Main.css';
 
 function Main() {
 
@@ -36,36 +37,35 @@ function Main() {
             .then(response => {
                 console.log("only one response: ");
                 console.log(response.json());
-            })
 
-        fetch("http://localhost:8080/api/get_all_hits", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(response => {
-                let jsonResp = response.json();
-                console.log(jsonResp);
-                jsonResp.then((data) => setTable(data));                
+
+                fetch("http://localhost:8080/api/get_all_hits", {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .then(response => {
+                        let jsonResp = response.json();
+                        console.log(jsonResp);
+                        jsonResp.then((data) => setTable(data));
+                    })
             })
 
     };
 
-    //console.log("isUserHere: " + isUserHere);
-
-    let xValue = 0;
-    let yValue = 0;
+    let [xValue, setXValue] = useState('');
+    let [yValue, setYValue] = useState('');
     const [rValue, setRValue] = useState('');
 
     const setX = (xdata) => {
         console.log("x: " + xdata);
-        xValue = xdata;
+        setXValue(xdata);
     }
     const setY = (ydata) => {
         console.log("y: " + ydata);
-        yValue = ydata;
+        setYValue(ydata);
     }
     const setR = (rdata) => {
         console.log("r: " + rdata);
@@ -76,25 +76,29 @@ function Main() {
 
     if (isUserHere) {
         return (
-            <div>
-                <div>
-                    <Graphic radius={rValue} setToMainX={setX} setToMainY={setY} />
-                    <br />
-                    x:
-                    <br />
-                    <XChoosing setToMain={setX} />
-                    <br />
-                    y:
-                    <br />
-                    <YChoosing setToMain={setY} />
-                    r:
-                    <br />
-                    <RChoosing setToMain={setR} />
+            <div className='header'>
+                Safonova Olga P3207
+                <div className='container'>
+                    <div>
+                        <Graphic radius={rValue} setToMainX={setX} setToMainY={setY} JsonData={tableValue} />
+                    </div>
+                    <div className='buttons'>
+                        r
+                        <br />
+                        <RChoosing setToMain={setR} />
+                        <br />
+                        x
+                        <br />
+                        <XChoosing setToMain={setX} />
+                        <br />
+                        y
+                        <br />
+                        <YChoosing setToMain={setY} />
+                        <br />
+                        <button onClick={handleSubmit} className='button'>check?</button>
+                    </div>
                 </div>
-                <div>
-                    <input type="submit" onClick={handleSubmit} />
-                </div>
-                <div>
+                <div className='table'>
                     <Table JsonData={tableValue} />
                 </div>
             </div>

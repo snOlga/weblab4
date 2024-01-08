@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import { Navigate, useNavigate } from 'react-router-dom';
+import './LogPasStyle.css';
+import LoremIpsum from './LoremIpsum';
 
 function LogPass() {
     const [login, setLogin] = useState('');
@@ -36,42 +38,58 @@ function LogPass() {
             }),
         })
             .then(response => {
-                console.log(response);
+                //console.log(response);
                 response.json();
             })
-            .then(data => { console.log(data); })
+            .then(data => {
+                //console.log(data);
+            })
+
+        window.location.reload(false);
 
     };
 
-    console.log(Cookies.get("IDkey"));
-
     if (Cookies.get("IDkey") != undefined) {
-        console.log(Cookies.get("IDkey"));
         return <Navigate to='/main' />
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            is new here?
-            <input
-                type="checkbox"
-                checked={isNew}
-                onChange={handleChangeNew}
-            />
-            <input
-                type="text"
-                placeholder="login here"
-                value={login}
-                onChange={handleChangeLogin}
-            />
-            <input
-                type="text"
-                placeholder="password here"
-                value={password}
-                onChange={handleChangePass}
-            />
-            <button type="submit">Send</button>
-        </form>
+        <div className='signin'>
+            Sign In
+            <form onSubmit={handleSubmit} className='logPasForm'>
+                <div>
+                    <br />
+                    <input
+                        type="text"
+                        placeholder="login"
+                        value={login}
+                        onChange={handleChangeLogin}
+                        className='input'
+                    />
+                    <br />
+                    <input
+                        type="password"
+                        placeholder="password"
+                        value={password}
+                        onChange={handleChangePass}
+                        className='input'
+                    />
+                    <br />
+                    <div className='text'>
+                        new here?
+                        <input
+                            type="checkbox"
+                            checked={isNew}
+                            onChange={handleChangeNew}
+                            className='checkbox'
+                        />
+                    </div>
+                    <button type="submit" className='button' id='submitButton'>sign in</button>
+                </div>
+
+                <LoremIpsum />
+            </form>
+        </div>
     );
 }
 

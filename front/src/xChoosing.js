@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Main.css';
 
 function XChoosing({ setToMain }) {
     const [xValue, setValue] = useState('');
@@ -8,8 +9,12 @@ function XChoosing({ setToMain }) {
         setToMain(xValue);
     };
 
+    function substr() {
+        document.getElementById('xInput').value = this.value.substr(0,17);
+    }
+
     return (
-        <input type='text' onChange={handleChangeValue} />
+        <input type='number' onChange={handleChangeValue} className='input' onInput={substr} id='xInput'/>
     );
 }
 

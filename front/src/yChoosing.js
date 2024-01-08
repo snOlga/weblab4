@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import GpsFixedOutlinedIcon from '@mui/icons-material/GpsFixedOutlined';
+import './Main.css';
 
 function YChoosing({ setToMain }) {
 
@@ -9,43 +10,61 @@ function YChoosing({ setToMain }) {
     }
 
     return (
-        <div>
-            -3
-            <IconButton color="primary" onClick={() => handleChangeValue(-3)}>
-                <GpsFixedOutlinedIcon />
-            </IconButton>
-            -2
-            <IconButton color="primary" onClick={() => handleChangeValue(-2)}>
-                <GpsFixedOutlinedIcon />
-            </IconButton>
-            -1
-            <IconButton color="primary" onClick={() => handleChangeValue(-1)}>
-                <GpsFixedOutlinedIcon />
-            </IconButton>
-            0
-            <IconButton color="primary" onClick={() => handleChangeValue(0)}>
-                <GpsFixedOutlinedIcon />
-            </IconButton>
-            1
-            <IconButton color="primary" onClick={() => handleChangeValue(1)}>
-                <GpsFixedOutlinedIcon />
-            </IconButton>
-            2
-            <IconButton color="primary" onClick={() => handleChangeValue(2)}>
-                <GpsFixedOutlinedIcon />
-            </IconButton>
-            3
-            <IconButton color="primary" onClick={() => handleChangeValue(3)}>
-                <GpsFixedOutlinedIcon />
-            </IconButton>
-            4
-            <IconButton color="primary" onClick={() => handleChangeValue(4)}>
-                <GpsFixedOutlinedIcon />
-            </IconButton>
-            5
-            <IconButton color="primary" onClick={() => handleChangeValue(5)}>
-                <GpsFixedOutlinedIcon />
-            </IconButton>
+        <div className='chooseButtons'>
+            <div className='chooseButton'>
+                -3
+                <IconButton color="black" onClick={() => handleChangeValue(-3)}>
+                    <GpsFixedOutlinedIcon />
+                </IconButton>
+            </div>
+            <div className='chooseButton'>
+                -2
+                <IconButton color="black" onClick={() => handleChangeValue(-2)}>
+                    <GpsFixedOutlinedIcon />
+                </IconButton>
+            </div>
+            <div className='chooseButton'>
+                -1
+                <IconButton color="black" onClick={() => handleChangeValue(-1)}>
+                    <GpsFixedOutlinedIcon />
+                </IconButton>
+            </div>
+            <div className='chooseButton'>
+                0
+                <IconButton color="black" onClick={() => handleChangeValue(0)}>
+                    <GpsFixedOutlinedIcon />
+                </IconButton>
+            </div>
+            <div className='chooseButton'>
+                1
+                <IconButton color="black" onClick={() => handleChangeValue(1)}>
+                    <GpsFixedOutlinedIcon />
+                </IconButton>
+            </div>
+            <div className='chooseButton'>
+                2
+                <IconButton color="black" onClick={() => handleChangeValue(2)}>
+                    <GpsFixedOutlinedIcon />
+                </IconButton>
+            </div>
+            <div className='chooseButton'>
+                3
+                <IconButton color="black" onClick={() => handleChangeValue(3)}>
+                    <GpsFixedOutlinedIcon />
+                </IconButton>
+            </div>
+            <div className='chooseButton'>
+                4
+                <IconButton color="black" onClick={() => handleChangeValue(4)}>
+                    <GpsFixedOutlinedIcon />
+                </IconButton>
+            </div>
+            <div className='chooseButtonRight'>
+                5
+                <IconButton color="black" onClick={() => handleChangeValue(5)}>
+                    <GpsFixedOutlinedIcon />
+                </IconButton>
+            </div>
         </div>
     );
 }

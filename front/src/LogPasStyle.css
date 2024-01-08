@@ -1,0 +1,159 @@
+.signin {
+    margin: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
+
+
+    font-size: 100px;
+    color: #6e79d6;
+    font-weight: 500;
+}
+
+.signin::selection {
+    background-color: #5057a9;
+}
+
+.logPasForm {
+    margin-top: 1%;
+    padding: 3%;
+    padding-left: 10%;
+
+    border-radius: 30px;
+    font-size: x-large;
+    background-color: rgb(73, 75, 76);
+    box-shadow: 3px 5px 5px black;
+    text-align: left;
+    display: flex;
+}
+
+.text {
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.text::selection {
+    background-color: #5057a9;
+}
+
+
+.input {
+    border-radius: 20px;
+    height: 50px;
+    width: 300px;
+    border: none;
+    border-bottom: 2px solid black;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.input:hover {
+    transition: all 500ms ease-out;
+    background-color: #afafaf;
+}
+
+.input::selection {
+    background-color: #5057a9;
+}
+
+.input::placeholder {
+    font-size: medium;
+    color: #afafaf;
+}
+
+.input:hover::placeholder {
+    color: rgb(110, 110, 110);
+}
+
+.button {
+    font-weight: 300;
+    border-radius: 20px;
+    height: 50px;
+    width: 80px;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: large;
+    background-color: #6e79d6;
+}
+
+.button:hover {
+    transition: all 500ms ease-out;
+    background-color: #5057a9;
+}
+
+
+
+
+
+
+
+
+
+.checkbox {
+    appearance: none;
+    background-color: #afafaf;
+    border-radius: 72px;
+    height: 20px;
+    margin: 2%;
+    position: relative;
+    width: 30px;
+    vertical-align: middle;
+}
+
+.checkbox,
+.checkbox::after {
+    transition: all 200ms ease-out;
+}
+
+.checkbox::after {
+    background-color: #fff;
+    border-radius: 50%;
+    content: "";
+    height: 14px;
+    left: 3px;
+    position: absolute;
+    top: 3px;
+    width: 14px;
+}
+
+.checkbox:hover {
+    background-color: #9a9a9a;
+}
+
+.checkbox:checked {
+    background-color: #6e79d6;
+}
+
+.checkbox:checked::after {
+    background-color: #fff;
+    left: 13px;
+}
+
+.checkbox:checked:hover {
+    background-color: #535db3;
+}
+
+
+
+
+
+
+
+.loremIpsum {
+    font-weight: 400;
+    margin-left: 5%;
+    padding-left: 5%;
+    color: #fff;
+    font-size: medium;
+    border-left: 2px solid white;
+}
+
+.loremIpsum p::selection {
+    background-color: #5057a9;
+}
+
+
+.loremIpsum p svg {
+    margin: 1%;
+    vertical-align: top;
+}
