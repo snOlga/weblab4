@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
 import XChoosing from './xChoosing';
 import YChoosing from './yChoosing';
 import RChoosing from './rChoosing';
 import Graphic from './Graphic';
 import Table from './Table';
 import UserLabel from './UserLabel.js';
+import { Navigate } from 'react-router-dom';
 import './Main.css';
 
 function Main() {
@@ -82,32 +82,32 @@ function Main() {
                 Safonova Olga P3207
                 <div className='container'>
                     <UserLabel />
-                    <div>
-                        <Graphic radius={rValue} setToMainX={setX} setToMainY={setY} JsonData={tableValue} />
-                    </div>
-                    <div className='buttons'>
-                        r
-                        <br />
-                        <RChoosing setToMain={setR} />
-                        <br />
-                        x
-                        <br />
-                        <XChoosing setToMain={setX} />
-                        <br />
-                        y
-                        <br />
-                        <YChoosing setToMain={setY} />
-                        <br />
-                        <button onClick={handleSubmit} className='button'>check?</button>
+                    <div className="graphicContainer"> 
+                        <div>
+                            <Graphic radius={rValue} setToMainX={setX} setToMainY={setY} JsonData={tableValue} />
+                        </div>
+                        <div className='buttons'>
+                            r
+                            <br />
+                            <RChoosing setToMain={setR} />
+                            <br />
+                            x
+                            <br />
+                            <XChoosing setToMain={setX} />
+                            <br />
+                            y
+                            <br />
+                            <YChoosing setToMain={setY} />
+                            <br />
+                            <button onClick={handleSubmit} className='button'>check?</button>
+                        </div>
                     </div>
                 </div>
-                <div className='table'>
+                <div>
                     <Table JsonData={tableValue} />
                 </div>
             </div>
         );
-    } else {
-        return <Navigate to='/' />
     }
 }
 
