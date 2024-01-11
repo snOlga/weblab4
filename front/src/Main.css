@@ -27,7 +27,7 @@
     margin-top: 1%;
     padding: 3%;
 
-    background-color: rgb(95, 97, 98);
+    background-color: rgb(73, 75, 76);
     border-radius: 30px;
     font-size: xx-large;
     text-align: left;
@@ -35,6 +35,7 @@
 }
 
 .buttons {
+    color: black;
     padding: 3%;
     font-weight: 500;
 }
@@ -87,12 +88,12 @@
 
 .mainTable {
     margin: 2%;
-    
+
 }
 
 .mainTable,
 .mainTable th,
-.mainTable td{
+.mainTable td {
     padding: 10px;
     min-height: 500px;
     border: 2px solid white;

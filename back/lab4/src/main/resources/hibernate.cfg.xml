@@ -7,9 +7,9 @@
     <session-factory>
         <!-- Настройки подключения к PostgreSQL -->
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://backend-db:5432/postgres</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
         <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">postgres</property>
+        <property name="hibernate.connection.password">123</property>
 
 
         <!-- Другие настройки Hibernate -->

@@ -9,8 +9,8 @@ function XChoosing({ setToMain }) {
         setToMain(xValue);
     };
 
-    function substr() {
-        document.getElementById('xInput').value = this.value.substr(0,17);
+    const substr = event => {
+        event.target.value = event.target.value.substr(0,17);
     }
 
     return (

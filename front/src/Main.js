@@ -83,7 +83,7 @@ function Main() {
                 <div className='container'>
                     <UserLabel />
                     <div className="graphicContainer"> 
-                        <div>
+                        <div className='graphic'>
                             <Graphic radius={rValue} setToMainX={setX} setToMainY={setY} JsonData={tableValue} />
                         </div>
                         <div className='buttons'>
