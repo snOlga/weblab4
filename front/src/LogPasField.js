@@ -45,13 +45,11 @@ function LogPass() {
                 //console.log(data);
             })
 
-        window.location.reload(false);
+        if (Cookies.get("IDkey") != undefined) {
+            navigate('/main');
+        }
 
     };
-
-    if (Cookies.get("IDkey") != undefined) {
-        return <Navigate to='/main' />
-    }
 
     return (
         <div className='signin'>
